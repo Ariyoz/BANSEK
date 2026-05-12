@@ -1,0 +1,9 @@
+# ============================================================
+#  BANSEK Pure Water — Netlify Redirects
+#  Works on: Netlify
+# ============================================================
+
+# Redirect /admin to /admin/ (trailing slash)
+/admin    /admin/    301
+
+# All other routes serve normally (no SPA rewrite needed)

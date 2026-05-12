@@ -1,0 +1,228 @@
+/* ================================================
+   BANSEK Pure Water — Notification Styles
+   User-side notification bell + panel
+   ================================================ */
+
+/* ── Bell button ─────────────────────────────────── */
+.notif-bell-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#user-notif-bell {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #0f172a;
+  transition: background .2s;
+  position: relative;
+}
+
+#user-notif-bell:hover {
+  background: rgba(15,23,42,.08);
+}
+
+#user-notif-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #ef4444;
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  border: 2px solid #fff;
+  line-height: 1;
+}
+
+/* ── Notification panel ──────────────────────────── */
+#user-notif-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+  z-index: 9000;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px) scale(.97);
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  font-family: 'Poppins', sans-serif;
+}
+
+#user-notif-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.unp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  font-weight: 700;
+  font-size: .9rem;
+  color: #0f172a;
+}
+
+.unp-header button {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: .78rem;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background .15s;
+}
+
+.unp-header button:hover {
+  background: #f1f5f9;
+}
+
+.unp-list {
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.unp-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: .85rem;
+}
+
+.unp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #f8fafc;
+  position: relative;
+  transition: background .15s;
+}
+
+.unp-item:hover {
+  background: #f8fafc;
+}
+
+.unp-item.unread {
+  background: #eff6ff;
+}
+
+.unp-item.unread:hover {
+  background: #dbeafe;
+}
+
+.unp-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.unp-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.unp-title {
+  font-weight: 600;
+  font-size: .82rem;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.unp-text {
+  font-size: .78rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.unp-time {
+  font-size: .7rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.unp-del {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: color .15s;
+}
+
+.unp-del:hover {
+  color: #ef4444;
+}
+
+/* ── Permission prompt banner ────────────────────── */
+#notif-permission-banner {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #fff;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: .85rem;
+  flex-wrap: wrap;
+}
+
+#notif-permission-banner .npb-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+#notif-permission-banner .npb-actions {
+  display: flex;
+  gap: 8px;
+}
+
+#notif-permission-banner button {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+
+#notif-permission-banner button:hover {
+  opacity: .85;
+}
+
+.npb-allow {
+  background: #fff;
+  color: #0284c7;
+}
+
+.npb-dismiss {
+  background: rgba(255,255,255,.2);
+  color: #fff;
+}

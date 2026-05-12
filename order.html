@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Order — BANSEK Pure Water</title>
+  <meta name="description" content="Order BANSEK sachet water online. Your order is sent directly to us via WhatsApp for fast confirmation and same-day delivery."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/notifications.css">
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-mark">💧</div><h1>BANSEK</h1></a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+  <ul id="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="order.html" class="nav-cta">Order Now</a></li>
+    <li>
+      <div class="notif-bell-wrap" style="position:relative">
+        <button id="user-notif-bell" title="Notifications" aria-label="Notifications">🔔
+          <span id="user-notif-badge" style="display:none"></span>
+        </button>
+        <div id="user-notif-panel"></div>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div>
+    <span class="section-eyebrow">Place Your Order</span>
+    <h2>Order via WhatsApp</h2>
+    <p>Fill in the form below — your order is sent directly to us on WhatsApp</p>
+  </div>
+</div>
+
+<section>
+  <div class="order-layout">
+    <div>
+      <form class="order-form-card" id="order-form" novalidate>
+        <p class="form-section-title">Your Details</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" placeholder="e.g. Amaka Okafor" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" placeholder="e.g. 08012345678" required>
+          </div>
+        </div>
+
+        <p class="form-section-title" style="margin-top:8px;">Your Order</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="product-select">Product *</label>
+            <select id="product-select" required>
+              <option value="">— Select a product —</option>
+              <option value="1 Bag – ₦500 (20 sachets)">1 Bag – ₦500 (20 sachets)</option>
+              <option value="5 Bags – ₦2,500 (100 sachets)">5 Bags – ₦2,500 (100 sachets)</option>
+              <option value="10 Bags – ₦5,000 (200 sachets)">10 Bags – ₦5,000 (200 sachets)</option>
+              <option value="20 Bags – ₦9,500 (400 sachets)">20 Bags – ₦9,500 (400 sachets)</option>
+              <option value="50 Bags – ₦22,000 (1,000 sachets)">50 Bags – ₦22,000 (1,000 sachets)</option>
+              <option value="Custom Order">Custom Order (we will discuss)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Number of Bags *</label>
+            <input type="number" id="quantity" placeholder="e.g. 5" min="1" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Delivery Address *</label>
+          <textarea id="address" placeholder="Enter your full delivery address including street, area, and a nearby landmark..." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="delivery-date">Preferred Delivery Date</label>
+            <input type="date" id="delivery-date">
+          </div>
+          <div class="form-group">
+            <label for="notes">Additional Notes</label>
+            <input type="text" id="notes" placeholder="Any special instructions...">
+          </div>
+        </div>
+
+        <p class="form-section-title" style="margin-top:8px;">Payment Method *</p>
+        <div class="payment-grid" id="payment-grid">
+
+          <div class="payment-option" data-value="Bank Transfer" onclick="selectPayment(this)">
+            <div class="payment-icon">🏦</div>
+            <div class="payment-label">Bank Transfer</div>
+            <div class="payment-sub">Pay to our account</div>
+          </div>
+
+          <div class="payment-option" data-value="Visa Card" onclick="selectPayment(this)">
+            <div class="payment-icon">
+              <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="12" font-family="Arial,sans-serif" font-size="13" font-weight="800" fill="#1a1f71" letter-spacing="1">VISA</text>
+              </svg>
+            </div>
+            <div class="payment-label">Visa Card</div>
+            <div class="payment-sub">Debit or credit</div>
+          </div>
+
+          <div class="payment-option" data-value="Mastercard" onclick="selectPayment(this)">
+            <div class="payment-icon">
+              <svg width="38" height="24" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="13" cy="12" r="11" fill="#eb001b"/>
+                <circle cx="25" cy="12" r="11" fill="#f79e1b"/>
+                <path d="M19 4.8a11 11 0 0 1 0 14.4A11 11 0 0 1 19 4.8z" fill="#ff5f00"/>
+              </svg>
+            </div>
+            <div class="payment-label">Mastercard</div>
+            <div class="payment-sub">Debit or credit</div>
+          </div>
+
+          <div class="payment-option" data-value="Cash on Delivery" onclick="selectPayment(this)">
+            <div class="payment-icon">💵</div>
+            <div class="payment-label">Cash on Delivery</div>
+            <div class="payment-sub">Pay when delivered</div>
+          </div>
+
+        </div>
+        <input type="hidden" id="payment-method" value="">
+        <div id="payment-error" style="display:none;color:#991b1b;font-size:.82rem;font-weight:600;margin-top:-12px;margin-bottom:16px;">⚠️ Please select a payment method.</div>
+
+        <button type="submit" class="submit-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send Order on WhatsApp
+        </button>
+
+        <div class="success-msg" id="success-msg">
+          ✅ WhatsApp is opening with your order details.<br>We will confirm and arrange delivery shortly. Thank you!
+        </div>
+      </form>
+    </div>
+
+    <div class="order-sidebar">
+      <div class="order-sidebar-card">
+        <h3>How It Works</h3>
+        <div class="sidebar-step">
+          <div class="step-dot">1</div>
+          <div class="step-info"><strong>Fill the form</strong><span>Enter your details and order info above</span></div>
+        </div>
+        <div class="sidebar-step">
+          <div class="step-dot">2</div>
+          <div class="step-info"><strong>Send via WhatsApp</strong><span>Click the green button — order goes to us instantly</span></div>
+        </div>
+        <div class="sidebar-step">
+          <div class="step-dot">3</div>
+          <div class="step-info"><strong>We confirm &amp; deliver</strong><span>We call to confirm, then dispatch your order</span></div>
+        </div>
+      </div>
+      <div class="sidebar-contact">
+        <p>Prefer to message us directly on WhatsApp?</p>
+        <a href="https://wa.me/2348000000000" target="_blank" class="btn-wa" style="width:100%;justify-content:center;font-size:.88rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <p style="margin-top:14px;font-size:.78rem;color:var(--muted);">📞 +234 800 000 0000<br>Mon–Sat · 7am–7pm</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-row"><div class="logo-mark">💧</div><span class="logo-name">BANSEK</span></div>
+      <p>Providing clean, safe, and affordable sachet water across Lagos since 2015.</p>
+    </div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="faq.html">FAQ</a></li><li><a href="order.html">Order Now</a></li></ul></div>
+    <div class="footer-col"><h4>Products</h4><ul><li><a href="order.html?product=1bag">1 Bag — ₦500</a></li><li><a href="order.html?product=5bags">5 Bags — ₦2,500</a></li><li><a href="order.html?product=10bags">10 Bags — ₦5,000</a></li><li><a href="order.html?product=20bags">20 Bags — ₦9,500</a></li><li><a href="order.html?product=50bags">50 Bags — ₦22,000</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><p>📞 +234 800 000 0000</p><p>📧 bansekwater@gmail.com</p><p>📍 Lagos, Nigeria</p></div>
+  </div>
+  <hr class="footer-divider"/>
+  <div class="footer-bottom"><span>© 2026 BANSEK Pure Water. All Rights Reserved.</span><span>NAFDAC Certified · Lagos, Nigeria</span></div>
+</footer>
+
+<a href="https://wa.me/2348000000000" target="_blank" class="wa-float" aria-label="Order on WhatsApp">
+  <div class="wa-float-pulse"></div>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<!-- Notification permission prompt (shown once if not yet asked) -->
+<div id="notif-permission-banner" style="display:none">
+  <span style="font-size:1.2rem">🔔</span>
+  <div class="npb-text">Get notified when your order status changes — enable notifications to stay updated.</div>
+  <div class="npb-actions">
+    <button class="npb-allow" onclick="enableUserNotifications()">Enable</button>
+    <button class="npb-dismiss" onclick="dismissNotifBanner()">Not now</button>
+  </div>
+</div>
+
+<script src="js/notifications.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Show permission banner if not yet decided
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.BansekNotif) return;
+    const prefs = window.BansekNotif.loadPrefs();
+    if (!prefs.bannerDismissed && 'Notification' in window && Notification.permission === 'default') {
+      setTimeout(() => {
+        document.getElementById('notif-permission-banner').style.display = 'flex';
+      }, 3000);
+    }
+  });
+
+  async function enableUserNotifications() {
+    if (window.BansekNotif) {
+      await window.BansekNotif.requestPermission();
+      const prefs = window.BansekNotif.loadPrefs();
+      prefs.bannerDismissed = true;
+      window.BansekNotif.savePrefs(prefs);
+    }
+    document.getElementById('notif-permission-banner').style.display = 'none';
+  }
+
+  function dismissNotifBanner() {
+    if (window.BansekNotif) {
+      const prefs = window.BansekNotif.loadPrefs();
+      prefs.bannerDismissed = true;
+      window.BansekNotif.savePrefs(prefs);
+    }
+    document.getElementById('notif-permission-banner').style.display = 'none';
+  }
+</script>
+</body></html>

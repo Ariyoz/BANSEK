@@ -1,0 +1,34 @@
+# ============================================================
+#  BANSEK Pure Water — Apache Configuration
+#  Works on: cPanel, shared hosting, Apache servers
+# ============================================================
+
+Options -Indexes
+
+# ── Redirect /admin to /admin/ (trailing slash) ──────────────
+RedirectMatch ^/admin$ /admin/
+
+# ── Serve /admin/ from the admin/ folder ─────────────────────
+# This is handled automatically by the folder structure.
+# No extra config needed — Apache serves admin/index.html
+# when a browser visits www.bansekwater.com/admin/
+
+# ── Security: block direct access to sensitive files ─────────
+<FilesMatch "\.(env|log|sql|bak|config)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ── Enable GZIP compression ───────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+
+# ── Browser caching ───────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css             "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg           "access plus 1 year"
+  ExpiresByType image/png            "access plus 1 year"
+</IfModule>

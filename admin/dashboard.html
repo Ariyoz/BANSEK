@@ -1,0 +1,795 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Dashboard — BANSEK Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="../css/notifications.css">
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-mark">💧</div>
+      <h2>BANSEK</h2>
+      <p>Admin Dashboard</p>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <button class="nav-item active" onclick="showPage('orders')" id="nav-orders">
+        <span class="nav-icon">📋</span> All Orders
+      </button>
+      <button class="nav-item" onclick="showPage('pending')" id="nav-pending">
+        <span class="nav-icon">⏳</span> Pending
+      </button>
+      <button class="nav-item" onclick="showPage('confirmed')" id="nav-confirmed">
+        <span class="nav-icon">✅</span> Confirmed
+      </button>
+      <button class="nav-item" onclick="showPage('delivered')" id="nav-delivered">
+        <span class="nav-icon">🚚</span> Delivered
+      </button>
+      <div class="nav-section-label">Notifications</div>
+      <button class="nav-item" onclick="showPage('notifications')" id="nav-notifications">
+        <span class="nav-icon">🔔</span> Notifications
+        <span class="nav-notif-badge" id="nav-notif-badge" style="display:none">0</span>
+      </button>
+      <div class="nav-section-label">Settings</div>
+      <a class="nav-item" href="/" target="_blank">
+        <span class="nav-icon">🌐</span> View Website
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        <span>🚪</span> Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 id="page-title">All Orders</h1>
+        <p id="page-sub">Manage and track all customer orders</p>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-badge" id="topbar-date"></span>
+        <!-- Notification Bell -->
+        <div class="notif-bell-wrap" style="position:relative">
+          <button id="admin-notif-bell" title="Notifications" onclick="toggleAdminNotifPanel()" style="background:none;border:none;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;position:relative;transition:background .2s" onmouseover="this.style.background='rgba(0,0,0,.06)'" onmouseout="this.style.background='none'">
+            🔔
+            <span id="admin-notif-badge" style="display:none;position:absolute;top:2px;right:2px;background:#ef4444;color:#fff;font-size:.6rem;font-weight:700;min-width:16px;height:16px;border-radius:999px;align-items:center;justify-content:center;padding:0 3px;border:2px solid #fff;line-height:1">0</span>
+          </button>
+          <!-- Admin Notification Dropdown Panel -->
+          <div id="admin-notif-panel" style="display:none;position:absolute;top:calc(100% + 10px);right:0;width:340px;background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.18);z-index:9000;overflow:hidden;font-family:'Poppins',sans-serif">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid #f1f5f9;font-weight:700;font-size:.9rem;color:#0f172a">
+              <span>Notifications</span>
+              <div style="display:flex;gap:6px">
+                <button onclick="adminMarkAllRead()" style="background:none;border:none;color:#64748b;font-size:.75rem;cursor:pointer;font-family:inherit;padding:4px 8px;border-radius:6px;transition:background .15s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">Mark all read</button>
+                <button onclick="adminClearAllNotifs()" style="background:none;border:none;color:#64748b;font-size:.75rem;cursor:pointer;font-family:inherit;padding:4px 8px;border-radius:6px;transition:background .15s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">Clear all</button>
+              </div>
+            </div>
+            <div id="admin-notif-list" style="max-height:360px;overflow-y:auto"></div>
+          </div>
+        </div>
+        <div class="admin-avatar">BA</div>
+      </div>
+    </header>
+
+    <!-- ORDERS PAGE -->
+    <div class="page-content" id="page-orders">
+
+      <!-- STAT CARDS -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-icon teal">📦</div>
+          <div class="stat-card-info">
+            <h3 id="stat-total">0</h3>
+            <p>Total Orders</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon amber">⏳</div>
+          <div class="stat-card-info">
+            <h3 id="stat-pending">0</h3>
+            <p>Pending</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon blue">✅</div>
+          <div class="stat-card-info">
+            <h3 id="stat-confirmed">0</h3>
+            <p>Confirmed</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon green">🚚</div>
+          <div class="stat-card-info">
+            <h3 id="stat-delivered">0</h3>
+            <p>Delivered</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE SECTION -->
+      <div class="section-header">
+        <h2>Customer Orders</h2>
+        <div class="section-header-actions">
+          <input type="text" class="search-input" id="search-input" placeholder="🔍  Search by name or phone..." oninput="renderTable()">
+          <div class="filter-bar">
+            <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+            <button class="filter-btn" onclick="setFilter('Pending', this)">Pending</button>
+            <button class="filter-btn" onclick="setFilter('Confirmed', this)">Confirmed</button>
+            <button class="filter-btn" onclick="setFilter('Delivered', this)">Delivered</button>
+          </div>
+          <button class="action-btn view" onclick="exportCSV()" style="padding:9px 18px;">⬇ Export CSV</button>
+          <button class="action-btn delete" onclick="clearAllOrders()" style="padding:9px 18px;">🗑 Clear All</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Payment</th>
+              <th>Date &amp; Time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+          </tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <span class="empty-icon">📭</span>
+          <h3>No orders yet</h3>
+          <p>When customers place orders on the website,<br>they will appear here automatically.</p>
+        </div>
+      </div>
+
+    </div><!-- end page-orders -->
+
+    <!-- PENDING PAGE -->
+    <div class="page-content hidden" id="page-pending">
+      <div class="section-header"><h2>Pending Orders</h2></div>
+      <div class="table-wrap">
+        <table class="orders-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Qty</th><th>Payment</th><th>Date &amp; Time</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="pending-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-pending" style="display:none;">
+          <span class="empty-icon">✅</span>
+          <h3>No pending orders</h3>
+          <p>All orders have been confirmed or delivered.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRMED PAGE -->
+    <div class="page-content hidden" id="page-confirmed">
+      <div class="section-header"><h2>Confirmed Orders</h2></div>
+      <div class="table-wrap">
+        <table class="orders-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Qty</th><th>Payment</th><th>Date &amp; Time</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="confirmed-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-confirmed" style="display:none;">
+          <span class="empty-icon">📋</span>
+          <h3>No confirmed orders</h3>
+          <p>Confirmed orders will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELIVERED PAGE -->
+    <div class="page-content hidden" id="page-delivered">
+      <div class="section-header"><h2>Delivered Orders</h2></div>
+      <div class="table-wrap">
+        <table class="orders-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Qty</th><th>Payment</th><th>Date &amp; Time</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="delivered-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-delivered" style="display:none;">
+          <span class="empty-icon">🚚</span>
+          <h3>No delivered orders yet</h3>
+          <p>Delivered orders will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS PAGE -->
+    <div class="page-content hidden" id="page-notifications">
+      <div class="section-header">
+        <h2>Notification Center</h2>
+        <div class="section-header-actions">
+          <button class="action-btn view" onclick="adminMarkAllRead()" style="padding:9px 18px;">✓ Mark All Read</button>
+          <button class="action-btn delete" onclick="adminClearAllNotifs()" style="padding:9px 18px;">🗑 Clear All</button>
+        </div>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="notif-settings-card" id="notif-settings-card">
+        <div class="notif-settings-title">🔔 Notification Settings</div>
+        <div class="notif-settings-row">
+          <div>
+            <div class="notif-settings-label">Browser / OS Notifications</div>
+            <div class="notif-settings-desc">Show desktop alerts when new orders arrive</div>
+          </div>
+          <label class="notif-toggle">
+            <input type="checkbox" id="toggle-os-notif" onchange="saveNotifPref('osNotifications', this.checked)">
+            <span class="notif-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="notif-settings-row">
+          <div>
+            <div class="notif-settings-label">Notification Sound</div>
+            <div class="notif-settings-desc">Play a sound when a new order arrives</div>
+          </div>
+          <label class="notif-toggle">
+            <input type="checkbox" id="toggle-sound" onchange="saveNotifPref('sound', this.checked)">
+            <span class="notif-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="notif-settings-row" id="permission-row" style="display:none">
+          <div>
+            <div class="notif-settings-label">Permission Status</div>
+            <div class="notif-settings-desc" id="permission-status-text">Checking…</div>
+          </div>
+          <button class="action-btn view" id="request-perm-btn" onclick="requestAdminPermission()" style="padding:7px 14px;font-size:.8rem;display:none">Enable</button>
+        </div>
+      </div>
+
+      <!-- Full notification list -->
+      <div class="table-wrap" style="margin-top:20px">
+        <div id="notif-full-list" style="padding:8px 0"></div>
+        <div class="empty-state" id="empty-notifications" style="display:none">
+          <span class="empty-icon">🔔</span>
+          <h3>No notifications</h3>
+          <p>New order alerts and system messages will appear here.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end dash-layout -->
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2>Order Details</h2>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="../js/notifications.js"></script>
+<script>
+// ── Auth guard ───────────────────────────────────
+if (sessionStorage.getItem('bansek_auth') !== 'true') {
+  const BASE = window.location.pathname.replace(/\/[^/]*$/, '/');
+  window.location.href = BASE + 'index.html';
+}
+
+// ── Init notifications ────────────────────────────
+window.addEventListener('DOMContentLoaded', async () => {
+  if (window.BansekNotif) {
+    await window.BansekNotif.init();
+    refreshAdminBell();
+    loadNotifSettings();
+    setupAdminChannel();
+  }
+});
+
+// ── State ────────────────────────────────────────
+let currentFilter = 'all';
+let currentPage   = 'orders';
+
+// ── Date in topbar ───────────────────────────────
+const now = new Date();
+document.getElementById('topbar-date').textContent =
+  now.toLocaleDateString('en-NG', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+
+// ── Get orders from localStorage ─────────────────
+function getOrders() {
+  try { return JSON.parse(localStorage.getItem('bansek_orders') || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveOrders(orders) {
+  localStorage.setItem('bansek_orders', JSON.stringify(orders));
+}
+
+// ── Update stat cards ─────────────────────────────
+function updateStats() {
+  const orders = getOrders();
+  document.getElementById('stat-total').textContent     = orders.length;
+  document.getElementById('stat-pending').textContent   = orders.filter(o => o.status === 'Pending').length;
+  document.getElementById('stat-confirmed').textContent = orders.filter(o => o.status === 'Confirmed').length;
+  document.getElementById('stat-delivered').textContent = orders.filter(o => o.status === 'Delivered').length;
+}
+
+// ── Build a table row ─────────────────────────────
+function buildRow(order) {
+  const statusClass = {
+    'Pending':   'status-pending',
+    'Confirmed': 'status-confirmed',
+    'Delivered': 'status-delivered',
+    'Cancelled': 'status-cancelled'
+  }[order.status] || 'status-pending';
+
+  return `<tr id="row-${order.id}">
+    <td><span class="order-id">#${order.id}</span></td>
+    <td class="customer-cell">
+      <strong>${escHtml(order.name)}</strong>
+      <span>${escHtml(order.phone)}</span>
+    </td>
+    <td>${escHtml(order.product)}</td>
+    <td><strong>${escHtml(order.quantity)}</strong></td>
+    <td><span class="pay-badge">${escHtml(order.payment)}</span></td>
+    <td style="font-size:.78rem;color:var(--muted)">${escHtml(order.datetime)}</td>
+    <td>
+      <select class="status-select" onchange="updateStatus('${order.id}', this.value)">
+        <option value="Pending"   ${order.status==='Pending'   ? 'selected':''}>⏳ Pending</option>
+        <option value="Confirmed" ${order.status==='Confirmed' ? 'selected':''}>✅ Confirmed</option>
+        <option value="Delivered" ${order.status==='Delivered' ? 'selected':''}>🚚 Delivered</option>
+        <option value="Cancelled" ${order.status==='Cancelled' ? 'selected':''}>❌ Cancelled</option>
+      </select>
+    </td>
+    <td style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="action-btn view" onclick="viewOrder('${order.id}')">View</button>
+      <button class="action-btn delete" onclick="deleteOrder('${order.id}')">Delete</button>
+    </td>
+  </tr>`;
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Render main orders table ──────────────────────
+function renderTable() {
+  const orders  = getOrders();
+  const search  = (document.getElementById('search-input')?.value || '').toLowerCase();
+  let filtered  = orders;
+
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(o => o.status === currentFilter);
+  }
+  if (search) {
+    filtered = filtered.filter(o =>
+      o.name.toLowerCase().includes(search) ||
+      o.phone.toLowerCase().includes(search) ||
+      o.product.toLowerCase().includes(search)
+    );
+  }
+
+  const tbody = document.getElementById('orders-tbody');
+  const empty = document.getElementById('empty-state');
+  if (!tbody) return;
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    tbody.innerHTML = filtered.slice().reverse().map(buildRow).join('');
+  }
+  updateStats();
+}
+
+// ── Render filtered pages ─────────────────────────
+function renderFilteredPage(status, tbodyId, emptyId) {
+  const orders  = getOrders().filter(o => o.status === status).reverse();
+  const tbody   = document.getElementById(tbodyId);
+  const empty   = document.getElementById(emptyId);
+  if (!tbody) return;
+  if (orders.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    tbody.innerHTML = orders.map(buildRow).join('');
+  }
+}
+
+// ── Update order status ───────────────────────────
+function updateStatus(id, newStatus) {
+  const orders = getOrders();
+  const idx    = orders.findIndex(o => o.id === id);
+  if (idx === -1) return;
+  const prevStatus = orders[idx].status;
+  orders[idx].status = newStatus;
+  saveOrders(orders);
+  renderAll();
+  showToast(`Order #${id} marked as ${newStatus}`, 'success');
+
+  // Push status-update notification for the user
+  if (window.BansekNotif && prevStatus !== newStatus) {
+    const statusEmoji = { Confirmed:'✅', Delivered:'🚚', Cancelled:'❌', Pending:'⏳' }[newStatus] || '📦';
+    window.BansekNotif.push({
+      type:     'status_update',
+      title:    `${statusEmoji} Order ${newStatus}`,
+      body:     `Order #${id} (${orders[idx].product}) has been marked as ${newStatus}.`,
+      orderId:  id,
+      audience: 'user',
+      url:      '/order.html'
+    });
+  }
+}
+
+// ── Delete order ──────────────────────────────────
+function deleteOrder(id) {
+  if (!confirm(`Delete order #${id}? This cannot be undone.`)) return;
+  const orders = getOrders().filter(o => o.id !== id);
+  saveOrders(orders);
+  renderAll();
+  showToast(`Order #${id} deleted`, 'error');
+}
+
+// ── Clear all orders ──────────────────────────────
+function clearAllOrders() {
+  if (!confirm('Delete ALL orders? This cannot be undone.')) return;
+  saveOrders([]);
+  renderAll();
+  showToast('All orders cleared', 'error');
+}
+
+// ── View order detail modal ───────────────────────
+function viewOrder(id) {
+  const order = getOrders().find(o => o.id === id);
+  if (!order) return;
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-row">
+      <div class="modal-field"><label>Order ID</label><p>#${escHtml(order.id)}</p></div>
+      <div class="modal-field"><label>Date &amp; Time</label><p>${escHtml(order.datetime)}</p></div>
+    </div>
+    <hr class="modal-divider"/>
+    <div class="modal-row">
+      <div class="modal-field"><label>Customer Name</label><p>${escHtml(order.name)}</p></div>
+      <div class="modal-field"><label>Phone Number</label><p>${escHtml(order.phone)}</p></div>
+    </div>
+    <div class="modal-field" style="margin-bottom:16px"><label>Delivery Address</label><p>${escHtml(order.address)}</p></div>
+    <hr class="modal-divider"/>
+    <div class="modal-row">
+      <div class="modal-field"><label>Product</label><p>${escHtml(order.product)}</p></div>
+      <div class="modal-field"><label>Quantity</label><p>${escHtml(order.quantity)} bag(s)</p></div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-field"><label>Payment Method</label><p>${escHtml(order.payment)}</p></div>
+      <div class="modal-field"><label>Preferred Date</label><p>${escHtml(order.deliveryDate || 'Not specified')}</p></div>
+    </div>
+    ${order.notes ? `<div class="modal-field" style="margin-bottom:16px"><label>Notes</label><p>${escHtml(order.notes)}</p></div>` : ''}
+    <hr class="modal-divider"/>
+    <div class="modal-field"><label>Current Status</label>
+      <select class="status-select" style="margin-top:6px;width:100%;padding:10px 14px" onchange="updateStatus('${order.id}', this.value); closeModal()">
+        <option value="Pending"   ${order.status==='Pending'   ? 'selected':''}>⏳ Pending</option>
+        <option value="Confirmed" ${order.status==='Confirmed' ? 'selected':''}>✅ Confirmed</option>
+        <option value="Delivered" ${order.status==='Delivered' ? 'selected':''}>🚚 Delivered</option>
+        <option value="Cancelled" ${order.status==='Cancelled' ? 'selected':''}>❌ Cancelled</option>
+      </select>
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+
+// ── Export CSV ────────────────────────────────────
+function exportCSV() {
+  const orders = getOrders();
+  if (orders.length === 0) { showToast('No orders to export', 'error'); return; }
+  const headers = ['Order ID','Name','Phone','Product','Quantity','Address','Payment','Delivery Date','Notes','Status','Date & Time'];
+  const rows = orders.map(o => [
+    o.id, o.name, o.phone, o.product, o.quantity,
+    o.address, o.payment, o.deliveryDate||'', o.notes||'', o.status, o.datetime
+  ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+  const csv  = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type:'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `bansek-orders-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Orders exported as CSV', 'success');
+}
+
+// ── Navigation ────────────────────────────────────
+function showPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + page).classList.remove('hidden');
+  document.getElementById('nav-' + page)?.classList.add('active');
+
+  const titles = {
+    orders:        ['All Orders',          'Manage and track all customer orders'],
+    pending:       ['Pending Orders',      'Orders awaiting confirmation'],
+    confirmed:     ['Confirmed Orders',    'Orders confirmed and being prepared'],
+    delivered:     ['Delivered Orders',    'Successfully delivered orders'],
+    notifications: ['Notification Center', 'Order alerts and system messages']
+  };
+  document.getElementById('page-title').textContent = titles[page][0];
+  document.getElementById('page-sub').textContent   = titles[page][1];
+  if (page === 'notifications') renderNotifPage();
+  renderAll();
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function renderAll() {
+  renderTable();
+  renderFilteredPage('Pending',   'pending-tbody',   'empty-pending');
+  renderFilteredPage('Confirmed', 'confirmed-tbody', 'empty-confirmed');
+  renderFilteredPage('Delivered', 'delivered-tbody', 'empty-delivered');
+  updateStats();
+}
+
+// ── Toast notification ────────────────────────────
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = (type === 'success' ? '✅ ' : '🗑 ') + msg;
+  t.className   = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── Logout ────────────────────────────────────────
+function logout() {
+  sessionStorage.removeItem('bansek_auth');
+  window.location.href = 'index.html';
+}
+
+// ── Listen for new orders from customer site ──────
+window.addEventListener('storage', function(e) {
+  if (e.key === 'bansek_orders') {
+    renderAll();
+    try {
+      const newOrders = JSON.parse(e.newValue || '[]');
+      const oldOrders = JSON.parse(e.oldValue || '[]');
+      if (newOrders.length > oldOrders.length) {
+        const newest = newOrders[newOrders.length - 1];
+        if (window.BansekNotif) {
+          window.BansekNotif.push({
+            type:     'new_order',
+            title:    '🛒 New Order Received!',
+            body:     `${newest.name} ordered ${newest.product} (×${newest.quantity}) — ${newest.payment}`,
+            orderId:  newest.id,
+            audience: 'admin',
+            url:      '/admin/dashboard.html',
+            requireInteraction: true
+          });
+          refreshAdminBell();
+          window.BansekNotif.playSound();
+        }
+        showToast(`New order from ${newest.name}!`, 'success');
+      }
+    } catch (_) {
+      showToast('New order received!', 'success');
+    }
+  }
+  if (e.key === 'bansek_notifications') {
+    refreshAdminBell();
+    if (currentPage === 'notifications') renderNotifPage();
+  }
+});
+
+// ── Initial render ────────────────────────────────
+renderAll();
+
+// ════════════════════════════════════════════════
+//  ADMIN NOTIFICATION SYSTEM
+// ════════════════════════════════════════════════
+
+function refreshAdminBell() {
+  if (!window.BansekNotif) return;
+  const count    = window.BansekNotif.getUnreadCount('admin');
+  const badge    = document.getElementById('admin-notif-badge');
+  const navBadge = document.getElementById('nav-notif-badge');
+  if (badge) {
+    badge.textContent = count > 9 ? '9+' : count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+  if (navBadge) {
+    navBadge.textContent = count > 9 ? '9+' : count;
+    navBadge.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+}
+
+function toggleAdminNotifPanel() {
+  const panel = document.getElementById('admin-notif-panel');
+  if (!panel) return;
+  const isOpen = panel.style.display === 'block';
+  if (isOpen) {
+    panel.style.display = 'none';
+  } else {
+    panel.style.display = 'block';
+    renderAdminNotifDropdown();
+    if (window.BansekNotif) {
+      window.BansekNotif.markAllRead('admin');
+      refreshAdminBell();
+    }
+  }
+}
+
+document.addEventListener('click', (e) => {
+  const panel = document.getElementById('admin-notif-panel');
+  const bell  = document.getElementById('admin-notif-bell');
+  if (panel && panel.style.display === 'block' &&
+      !panel.contains(e.target) && bell && !bell.contains(e.target)) {
+    panel.style.display = 'none';
+  }
+});
+
+function renderAdminNotifDropdown() {
+  const list = document.getElementById('admin-notif-list');
+  if (!list || !window.BansekNotif) return;
+  const notifs = window.BansekNotif.getFor('admin').slice(0, 10);
+  if (notifs.length === 0) {
+    list.innerHTML = `<div style="padding:28px 16px;text-align:center;color:#94a3b8;font-size:.85rem">No notifications yet</div>`;
+    return;
+  }
+  list.innerHTML = notifs.map(n => `
+    <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-bottom:1px solid #f8fafc;background:${n.read?'#fff':'#eff6ff'};cursor:pointer;transition:background .15s"
+         onclick="handleAdminNotifClick('${n.id}','${escHtml(n.orderId||'')}')"
+         onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='${n.read?'#fff':'#eff6ff'}'">
+      <div style="font-size:1.2rem;flex-shrink:0;margin-top:2px">${n.type==='new_order'?'🛒':n.type==='status_update'?'📦':'🔔'}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:.82rem;color:#0f172a;margin-bottom:2px">${escHtml(n.title)}</div>
+        <div style="font-size:.78rem;color:#475569;line-height:1.4">${escHtml(n.body)}</div>
+        <div style="font-size:.7rem;color:#94a3b8;margin-top:4px">${window.BansekNotif.timeAgo(n.timestamp)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function handleAdminNotifClick(notifId, orderId) {
+  if (window.BansekNotif) window.BansekNotif.markRead(notifId);
+  document.getElementById('admin-notif-panel').style.display = 'none';
+  if (orderId) { showPage('orders'); setTimeout(() => viewOrder(orderId), 100); }
+  refreshAdminBell();
+}
+
+function adminMarkAllRead() {
+  if (window.BansekNotif) {
+    window.BansekNotif.markAllRead('admin');
+    refreshAdminBell();
+    renderAdminNotifDropdown();
+    renderNotifPage();
+    showToast('All notifications marked as read', 'success');
+  }
+}
+
+function adminClearAllNotifs() {
+  if (!confirm('Clear all notifications? This cannot be undone.')) return;
+  if (window.BansekNotif) {
+    window.BansekNotif.clearAll('admin');
+    refreshAdminBell();
+    renderAdminNotifDropdown();
+    renderNotifPage();
+    showToast('All notifications cleared', 'error');
+  }
+}
+
+function renderNotifPage() {
+  if (!window.BansekNotif) return;
+  const notifs = window.BansekNotif.getFor('admin');
+  const list   = document.getElementById('notif-full-list');
+  const empty  = document.getElementById('empty-notifications');
+  if (!list) return;
+  if (notifs.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  list.innerHTML = notifs.map(n => `
+    <div class="notif-full-item ${n.read?'':'unread'}" id="nfi-${n.id}">
+      <div class="nfi-icon">${n.type==='new_order'?'🛒':n.type==='status_update'?'📦':'🔔'}</div>
+      <div class="nfi-body">
+        <div class="nfi-title">${escHtml(n.title)}</div>
+        <div class="nfi-text">${escHtml(n.body)}</div>
+        <div class="nfi-meta">
+          <span>${escHtml(n.datetime)}</span>
+          ${n.orderId?`<button class="nfi-link" onclick="showPage('orders');setTimeout(()=>viewOrder('${escHtml(n.orderId)}'),100)">View Order →</button>`:''}
+        </div>
+      </div>
+      <div class="nfi-actions">
+        ${!n.read?`<button class="nfi-btn-read" onclick="adminReadOne('${n.id}')">Mark read</button>`:'<span style="color:#94a3b8;font-size:.75rem">Read</span>'}
+        <button class="nfi-btn-del" onclick="adminDeleteNotif('${n.id}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function adminReadOne(id) {
+  if (window.BansekNotif) window.BansekNotif.markRead(id);
+  refreshAdminBell();
+  renderNotifPage();
+}
+
+function adminDeleteNotif(id) {
+  if (window.BansekNotif) window.BansekNotif.deleteNotification(id);
+  refreshAdminBell();
+  renderNotifPage();
+  renderAdminNotifDropdown();
+}
+
+function loadNotifSettings() {
+  if (!window.BansekNotif) return;
+  const prefs = window.BansekNotif.loadPrefs();
+  const osToggle    = document.getElementById('toggle-os-notif');
+  const soundToggle = document.getElementById('toggle-sound');
+  if (osToggle)    osToggle.checked    = prefs.osNotifications !== false;
+  if (soundToggle) soundToggle.checked = prefs.sound !== false;
+  const permRow  = document.getElementById('permission-row');
+  const permText = document.getElementById('permission-status-text');
+  const permBtn  = document.getElementById('request-perm-btn');
+  if (permRow && 'Notification' in window) {
+    permRow.style.display = 'flex';
+    const p = Notification.permission;
+    if (permText) permText.textContent =
+      p === 'granted' ? '✅ Granted — desktop alerts are active' :
+      p === 'denied'  ? '❌ Blocked — please allow in browser settings' :
+                        '⚠️ Not yet requested';
+    if (permBtn) permBtn.style.display = p === 'default' ? 'block' : 'none';
+  }
+}
+
+function saveNotifPref(key, value) {
+  if (!window.BansekNotif) return;
+  const prefs = window.BansekNotif.loadPrefs();
+  prefs[key] = value;
+  window.BansekNotif.savePrefs(prefs);
+  if (key === 'osNotifications' && value) requestAdminPermission();
+  showToast('Notification preference saved', 'success');
+}
+
+async function requestAdminPermission() {
+  if (!window.BansekNotif) return;
+  const result = await window.BansekNotif.requestPermission();
+  loadNotifSettings();
+  if (result === 'granted') showToast('Desktop notifications enabled!', 'success');
+  else showToast('Permission denied — check browser settings', 'error');
+}
+
+function setupAdminChannel() {
+  if (!window.BansekNotif) return;
+  const ch = window.BansekNotif.getChannel();
+  if (!ch) return;
+  ch.onmessage = (e) => {
+    if (e.data.type === 'NEW_NOTIFICATION') {
+      const notif = e.data.notif;
+      if (notif.audience === 'admin' || notif.audience === 'both') {
+        refreshAdminBell();
+        window.BansekNotif.playSound();
+        showToast(notif.title, 'success');
+        if (currentPage === 'notifications') renderNotifPage();
+      }
+    }
+  };
+}
+</script>
+</body>
+</html>

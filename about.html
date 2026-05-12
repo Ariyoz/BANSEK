@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - BANSEK Pure Water</title>
+    <meta
+      name="description"
+      content="Learn about BANSEK Pure Water - Nigeria's leading sachet water delivery service. Quality, reliability, and customer satisfaction since 2020."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #f5fbff;
+        color: #222;
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR */
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+      }
+
+      nav h1 {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* HERO */
+      .hero {
+        height: 60vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop")
+            center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 0 8%;
+      }
+
+      .hero h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        line-height: 1.6;
+      }
+
+      /* CONTENT */
+      .content {
+        padding: 80px 8%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section {
+        margin-bottom: 80px;
+      }
+
+      .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #1a5f7a;
+        text-align: center;
+      }
+
+      .section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: #555;
+      }
+
+      .mission-vision {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .mission-card,
+      .vision-card {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .mission-card h3,
+      .vision-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #1a5f7a;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .stat-card {
+        background: linear-gradient(135deg, #1a5f7a, #2c8ca8);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(26, 95, 122, 0.3);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #1a5f7a;
+        color: white;
+        padding: 40px 8%;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .footer-section a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          gap: 15px;
+        }
+
+        .hero {
+          height: 50vh;
+          padding: 0 5%;
+        }
+
+        .hero h2 {
+          font-size: 2rem;
+        }
+
+        .content {
+          padding: 40px 5%;
+        }
+
+        .section h2 {
+          font-size: 2rem;
+        }
+
+        .mission-vision {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <h1>BANSEK</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h2>About BANSEK Pure Water</h2>
+        <p>
+          Committed to delivering clean, safe, and affordable water solutions
+          across Nigeria
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <section class="section">
+        <h2>Our Story</h2>
+        <p>
+          Founded in 2020, BANSEK Pure Water began with a simple mission: to
+          provide every Nigerian with access to clean, hygienic drinking water
+          at affordable prices. We recognized that while many communities have
+          access to water, the quality and safety of that water was often
+          compromised.
+        </p>
+        <p>
+          Starting as a small local operation in Lagos, we've grown to serve
+          thousands of customers across Nigeria, from individual households to
+          large corporate offices and event organizers. Our commitment to
+          quality, reliability, and customer satisfaction has made us a trusted
+          name in the pure water industry.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Our Mission & Vision</h2>
+        <div class="mission-vision">
+          <div class="mission-card">
+            <h3>Our Mission</h3>
+            <p>
+              To provide every Nigerian with access to clean, safe, and
+              affordable drinking water through innovative delivery solutions
+              and uncompromising quality standards.
+            </p>
+          </div>
+          <div class="vision-card">
+            <h3>Our Vision</h3>
+            <p>
+              To be Nigeria's leading pure water delivery service, setting the
+              standard for quality, reliability, and customer service in the
+              industry.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Why Choose BANSEK?</h2>
+        <p>
+          What sets BANSEK apart is our unwavering commitment to quality and
+          service. We use state-of-the-art purification technology to ensure
+          every drop of water meets the highest safety standards. Our delivery
+          team is trained professionals who understand the importance of timely
+          service.
+        </p>
+        <p>
+          We believe in building long-term relationships with our customers,
+          which is why we offer personalized service, flexible delivery
+          schedules, and responsive customer support. When you choose BANSEK,
+          you're not just buying water – you're investing in your health and
+          peace of mind.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Our Impact</h2>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Bags Delivered</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Customer Support</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="products.html">Products</a>
+          <a href="testimonials.html">Testimonials</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-section">
+          <h3>Services</h3>
+          <a href="products.html#delivery">Water Delivery</a>
+          <a href="products.html#bulk">Bulk Orders</a>
+          <a href="products.html#events">Event Catering</a>
+          <a href="products.html#offices">Office Supply</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p>📞 +234 800 000 0000</p>
+          <p>📧 info@bansekwater.com</p>
+          <p>📍 Lagos, Nigeria</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 BANSEK Pure Water. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
