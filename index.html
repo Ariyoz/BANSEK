@@ -8,12 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-mark">💧</div>
+    <div class="nav-logo-mark">??</div>
     <h1>BANSEK</h1>
   </a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
@@ -23,7 +25,8 @@
     <li><a href="products.html">Products</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="order.html" class="nav-cta">Order Now</a></li>
-  </ul>
+      <li><button class="cart-nav-btn" onclick="openCart()" aria-label="View cart">🛒 Cart <span class="cart-badge" id="nav-cart-badge">0</span></button></li>
+    </ul>
 </nav>
 
 <!-- HERO -->
@@ -51,14 +54,14 @@
   </div>
   <div class="hero-visual">
     <div class="hero-card">
-      <span class="hero-card-icon">💧</span>
+      <span class="hero-card-icon">??</span>
       <h3>BANSEK Pure Water</h3>
       <p>NAFDAC certified · Multi-stage purified · Same-day delivery</p>
       <a href="order.html" class="btn-primary" style="width:100%;justify-content:center;">Place an Order</a>
       <div class="hero-card-stats">
         <div class="hero-card-stat"><h4>100%</h4><p>Purified</p></div>
         <div class="hero-card-stat"><h4>Same Day</h4><p>Delivery</p></div>
-        <div class="hero-card-stat"><h4>₦500</h4><p>From</p></div>
+        <div class="hero-card-stat"><h4>?500</h4><p>From</p></div>
         <div class="hero-card-stat"><h4>10+</h4><p>Years</p></div>
       </div>
     </div>
@@ -84,7 +87,7 @@
         <span class="lbl">Years Trusted</span>
       </div>
       <div class="about-float-card2">
-        <span class="icon">✅</span>
+        <span class="icon">?</span>
         <div class="info">
           <strong>NAFDAC Certified</strong>
           <span>Reg. No. 01-1234</span>
@@ -97,11 +100,11 @@
       <p>Since 2015, BANSEK Pure Water has been producing safe, refreshing drinking water using modern multi-stage purification technology — rigorously tested and certified before every single delivery.</p>
       <p>We serve homes, offices, schools, restaurants, and events across Lagos with fast delivery and prices that work for every budget.</p>
       <ul class="about-checks">
-        <li><span class="check-icon">✓</span> Multi-stage purification — filtration, RO, UV &amp; ozonation</li>
-        <li><span class="check-icon">✓</span> NAFDAC certified production facility</li>
-        <li><span class="check-icon">✓</span> Same-day delivery for orders placed before 12pm</li>
-        <li><span class="check-icon">✓</span> Bulk discounts for large orders &amp; regular customers</li>
-        <li><span class="check-icon">✓</span> Orders received instantly via WhatsApp</li>
+        <li><span class="check-icon">?</span> Multi-stage purification — filtration, RO, UV &amp; ozonation</li>
+        <li><span class="check-icon">?</span> NAFDAC certified production facility</li>
+        <li><span class="check-icon">?</span> Same-day delivery for orders placed before 12pm</li>
+        <li><span class="check-icon">?</span> Bulk discounts for large orders &amp; regular customers</li>
+        <li><span class="check-icon">?</span> Orders received instantly via WhatsApp</li>
       </ul>
       <a href="order.html" class="btn-primary">Order Now</a>
     </div>
@@ -125,8 +128,9 @@
         <h3>1 Bag of Water</h3>
         <p class="product-sachets">20 sachets · 500ml each · 10 litres</p>
         <p>Perfect for daily household use or small gatherings.</p>
-        <div class="price">₦500 <span>/ bag</span></div>
+        <div class="price">?500 <span>/ bag</span></div>
         <a href="order.html?product=1bag" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('1bag')">🛒 Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -137,8 +141,9 @@
         <h3>5 Bags of Water</h3>
         <p class="product-sachets">100 sachets · 500ml each · 50 litres</p>
         <p>Great for families, small offices, and weekly supply.</p>
-        <div class="price">₦2,500 <span>/ 5 bags</span></div>
+        <div class="price">?2,500 <span>/ 5 bags</span></div>
         <a href="order.html?product=5bags" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('5bags')">🛒 Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -150,8 +155,9 @@
         <h3>10 Bags of Water</h3>
         <p class="product-sachets">200 sachets · 500ml each · 100 litres</p>
         <p>Ideal for offices, schools, events, and businesses.</p>
-        <div class="price">₦5,000 <span>/ 10 bags</span></div>
+        <div class="price">?5,000 <span>/ 10 bags</span></div>
         <a href="order.html?product=10bags" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('10bags')">🛒 Add to Cart</button>
       </div>
     </div>
   </div>
@@ -169,22 +175,22 @@
   </div>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">💧</div>
+      <div class="feature-icon">??</div>
       <h3>100% Hygienic</h3>
       <p>Multi-stage purification and quality checks on every single batch before it leaves our facility.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🚚</div>
+      <div class="feature-icon">??</div>
       <h3>Same-Day Delivery</h3>
       <p>Order before 12pm and receive your water the same day, anywhere in Lagos.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">💬</div>
+      <div class="feature-icon">??</div>
       <h3>WhatsApp Ordering</h3>
       <p>Order instantly via WhatsApp — no app, no account, no hassle. Just message and we deliver.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">✅</div>
+      <div class="feature-icon">?</div>
       <h3>NAFDAC Certified</h3>
       <p>Fully certified and compliant with all Nigerian food and drug safety standards.</p>
     </div>
@@ -200,17 +206,17 @@
   </div>
   <div class="process-grid">
     <div class="process-step">
-      <div class="process-num">📋</div>
+      <div class="process-num">??</div>
       <h3>1. Fill the Form</h3>
       <p>Enter your name, phone number, product choice, quantity, and delivery address on our order page.</p>
     </div>
     <div class="process-step">
-      <div class="process-num">💬</div>
+      <div class="process-num">??</div>
       <h3>2. Send via WhatsApp</h3>
       <p>Click the button and your order is sent directly to our WhatsApp — we receive it instantly.</p>
     </div>
     <div class="process-step">
-      <div class="process-num">🚚</div>
+      <div class="process-num">??</div>
       <h3>3. We Deliver</h3>
       <p>We confirm your order and dispatch delivery. Same-day for orders before 12pm.</p>
     </div>
@@ -226,7 +232,7 @@
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars">?????</div>
       <p>"BANSEK water is always fresh and delivered on time. My whole family drinks it every single day. Best water in Lagos!"</p>
       <div class="customer-info">
         <div class="customer-avatar">AO</div>
@@ -234,7 +240,7 @@
       </div>
     </div>
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars">?????</div>
       <p>"We supply our entire office with BANSEK. The quality is consistently excellent and the team is always reliable."</p>
       <div class="customer-info">
         <div class="customer-avatar">CA</div>
@@ -242,7 +248,7 @@
       </div>
     </div>
     <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars">?????</div>
       <p>"Ordered 20 bags for my daughter's birthday party. Delivered same day, no stress at all. Will always use BANSEK!"</p>
       <div class="customer-info">
         <div class="customer-avatar">FB</div>
@@ -268,7 +274,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="logo-row"><div class="logo-mark">💧</div><span class="logo-name">BANSEK</span></div>
+      <div class="logo-row"><div class="logo-mark">??</div><span class="logo-name">BANSEK</span></div>
       <p>Providing clean, safe, and affordable sachet water across Lagos since 2015. NAFDAC certified. Same-day delivery available.</p>
       <a href="https://wa.me/2348000000000" target="_blank" class="wa-footer-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -288,18 +294,18 @@
     <div class="footer-col">
       <h4>Products</h4>
       <ul>
-        <li><a href="order.html?product=1bag">1 Bag — ₦500</a></li>
-        <li><a href="order.html?product=5bags">5 Bags — ₦2,500</a></li>
-        <li><a href="order.html?product=10bags">10 Bags — ₦5,000</a></li>
-        <li><a href="order.html?product=20bags">20 Bags — ₦9,500</a></li>
-        <li><a href="order.html?product=50bags">50 Bags — ₦22,000</a></li>
+        <li><a href="order.html?product=1bag">1 Bag — ?500</a></li>
+        <li><a href="order.html?product=5bags">5 Bags — ?2,500</a></li>
+        <li><a href="order.html?product=10bags">10 Bags — ?5,000</a></li>
+        <li><a href="order.html?product=20bags">20 Bags — ?9,500</a></li>
+        <li><a href="order.html?product=50bags">50 Bags — ?22,000</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <p>📞 +234 800 000 0000</p>
-      <p>📧 bansekwater@gmail.com</p>
-      <p>📍 Lagos, Nigeria</p>
+      <p>?? +234 800 000 0000</p>
+      <p>?? bansekwater@gmail.com</p>
+      <p>?? Lagos, Nigeria</p>
       <p style="margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.25);">Mon–Sat · 7am–7pm</p>
     </div>
   </div>
@@ -315,6 +321,34 @@
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script src="js/main.js"></script>
+
+<!-- Cart Drawer -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-header-title">🛒 Your Cart <span class="cart-header-count cart-badge" id="drawer-cart-badge">0</span></div>
+    <button class="cart-close-btn" onclick="closeCart()">x</button>
+  </div>
+  <div id="cart-empty" style="display:flex">
+    <div class="cart-empty-icon">🛒</div>
+    <p>Your cart is empty</p>
+    <span>Add products above - they will be saved here so you can order later</span>
+  </div>
+  <div id="cart-items"></div>
+  <div id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cart-total">N0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+    <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+<div id="cart-flash"></div>
+
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
+
+
