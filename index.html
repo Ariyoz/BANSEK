@@ -2,353 +2,221 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>BANSEK Pure Water — Clean Water Delivered Across Lagos</title>
-  <meta name="description" content="BANSEK Pure Water delivers NAFDAC-certified sachet water to homes, offices, schools and events across Lagos. Order via WhatsApp for same-day delivery."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BANSEK Pure Water — Fresh, Clean, Delivered</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/cart.css">
-  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-mark">??</div>
-    <h1>BANSEK</h1>
-  </a>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
-  <ul id="nav-menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="order.html" class="nav-cta">Order Now</a></li>
-      <li><button class="cart-nav-btn" onclick="openCart()" aria-label="View cart">🛒 Cart <span class="cart-badge" id="nav-cart-badge">0</span></button></li>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">&#128167;</div>
+      <h1>BANSEK</h1>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">&#9776;</button>
+    <ul id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="order.html" class="nav-cta">Order Now</a></li>
+      <li>
+        <button class="cart-nav-btn" onclick="openCart()" aria-label="View cart">
+          &#128722; Cart <span class="cart-badge" id="nav-cart-badge">0</span>
+        </button>
+      </li>
     </ul>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow"><span></span> NAFDAC Certified Pure Water</div>
-    <h1>Clean Water,<br><em>Delivered Fresh</em><br>to Your Door</h1>
-    <p class="hero-sub">BANSEK Pure Water brings hygienic, affordable sachet water to homes, offices, schools, and events across Lagos — order in seconds via WhatsApp.</p>
-    <div class="hero-actions">
-      <a href="order.html" class="btn-wa">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Order via WhatsApp
-      </a>
-      <a href="products.html" class="btn-ghost">View Products</a>
-    </div>
-    <div class="hero-trust">
-      <div class="hero-trust-avatars">
-        <span>AO</span><span>CB</span><span>FK</span><span>+</span>
-      </div>
-      <div class="hero-trust-text">
-        <strong>5,000+ happy customers</strong>
-        Trusted across Lagos since 2015
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">&#10022; NAFDAC Certified Pure Water</div>
+      <h2>Clean Water,<br><span>Delivered to Your Door</span></h2>
+      <p>BANSEK Pure Water delivers hygienic sachet water for homes, offices, schools, and events across Lagos. Order in seconds via WhatsApp.</p>
+      <div class="hero-btns">
+        <a href="order.html" class="btn-primary">Order via WhatsApp</a>
+        <a href="products.html" class="btn-outline">See Products</a>
       </div>
     </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><h3>5,000+</h3><p>Happy Customers</p></div>
+    <div class="stat-item"><h3>10+</h3><p>Years of Service</p></div>
+    <div class="stat-item"><h3>100%</h3><p>Purified Water</p></div>
+    <div class="stat-item"><h3>Same Day</h3><p>Delivery Available</p></div>
   </div>
-  <div class="hero-visual">
-    <div class="hero-card">
-      <span class="hero-card-icon">??</span>
-      <h3>BANSEK Pure Water</h3>
-      <p>NAFDAC certified · Multi-stage purified · Same-day delivery</p>
-      <a href="order.html" class="btn-primary" style="width:100%;justify-content:center;">Place an Order</a>
-      <div class="hero-card-stats">
-        <div class="hero-card-stat"><h4>100%</h4><p>Purified</p></div>
-        <div class="hero-card-stat"><h4>Same Day</h4><p>Delivery</p></div>
-        <div class="hero-card-stat"><h4>?500</h4><p>From</p></div>
-        <div class="hero-card-stat"><h4>10+</h4><p>Years</p></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=1200&auto=format&fit=crop" alt="BANSEK production">
+        <div class="about-badge"><span>10+</span> Years Trusted</div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">About BANSEK</div>
+        <h2 style="font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:18px;line-height:1.25;">Nigeria's Trusted<br>Sachet Water Brand</h2>
+        <p>BANSEK Pure Water has been producing safe, refreshing drinking water since 2015 using modern multi-stage purification technology — tested and certified before every single delivery.</p>
+        <p>We serve homes, offices, schools, restaurants, and events across Lagos with fast delivery and prices that make sense for every budget.</p>
+        <ul class="about-checks">
+          <li>Multi-stage purification — filtration, RO, UV &amp; ozonation</li>
+          <li>NAFDAC certified production facility</li>
+          <li>Same-day delivery for orders before 12pm</li>
+          <li>Bulk discounts for large orders &amp; regular customers</li>
+          <li>Orders received instantly via WhatsApp</li>
+        </ul>
+        <a href="order.html" class="btn-primary">Order Now</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-item"><h3>5,000+</h3><p>Happy Customers</p></div>
-  <div class="stat-item"><h3>10+</h3><p>Years of Service</p></div>
-  <div class="stat-item"><h3>100%</h3><p>Purified Water</p></div>
-  <div class="stat-item"><h3>Same Day</h3><p>Delivery Available</p></div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-img-wrap">
-      <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=1200&auto=format&fit=crop" alt="BANSEK production facility">
-      <div class="about-img-overlay"></div>
-      <div class="about-float-card">
-        <span class="num">10+</span>
-        <span class="lbl">Years Trusted</span>
+  <!-- PRODUCTS -->
+  <section class="products-section">
+    <div class="section-title">
+      <div class="section-label">Our Products</div>
+      <h2>Choose Your Pack</h2>
+      <p>All products are quality-tested and ready for same-day delivery.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=800&auto=format&fit=crop" alt="1 Bag">
+        <div class="product-content">
+          <h3>1 Bag</h3>
+          <p>20 sachets — perfect for daily household use.</p>
+          <div class="price">&#8358;500</div>
+          <a href="order.html?product=1bag" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('1bag')">&#128722; Add to Cart</button>
+        </div>
       </div>
-      <div class="about-float-card2">
-        <span class="icon">?</span>
-        <div class="info">
-          <strong>NAFDAC Certified</strong>
-          <span>Reg. No. 01-1234</span>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?q=80&w=800&auto=format&fit=crop" alt="5 Bags">
+        <div class="product-content">
+          <h3>5 Bags</h3>
+          <p>100 sachets — great for families and small offices.</p>
+          <div class="price">&#8358;2,500</div>
+          <a href="order.html?product=5bags" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('5bags')">&#128722; Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1564419320461-6870880221ad?q=80&w=800&auto=format&fit=crop" alt="10 Bags">
+        <div class="product-content">
+          <h3>10 Bags</h3>
+          <p>200 sachets — ideal for events and businesses.</p>
+          <div class="price">&#8358;5,000</div>
+          <a href="order.html?product=10bags" class="order-btn">Order Now</a>
+          <button class="add-to-cart-btn" onclick="addToCart('10bags')">&#128722; Add to Cart</button>
         </div>
       </div>
     </div>
-    <div class="about-text">
-      <span class="section-eyebrow">About BANSEK</span>
-      <h2>Nigeria's Most Trusted Sachet Water Brand</h2>
-      <p>Since 2015, BANSEK Pure Water has been producing safe, refreshing drinking water using modern multi-stage purification technology — rigorously tested and certified before every single delivery.</p>
-      <p>We serve homes, offices, schools, restaurants, and events across Lagos with fast delivery and prices that work for every budget.</p>
-      <ul class="about-checks">
-        <li><span class="check-icon">?</span> Multi-stage purification — filtration, RO, UV &amp; ozonation</li>
-        <li><span class="check-icon">?</span> NAFDAC certified production facility</li>
-        <li><span class="check-icon">?</span> Same-day delivery for orders placed before 12pm</li>
-        <li><span class="check-icon">?</span> Bulk discounts for large orders &amp; regular customers</li>
-        <li><span class="check-icon">?</span> Orders received instantly via WhatsApp</li>
-      </ul>
-      <a href="order.html" class="btn-primary">Order Now</a>
+    <div style="text-align:center;margin-top:44px;">
+      <a href="products.html" class="btn-primary">View All Products</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PRODUCTS -->
-<section class="products-section">
-  <div class="section-title">
-    <span class="section-eyebrow">Our Products</span>
-    <h2>Choose Your Pack</h2>
-    <p>All products are NAFDAC certified, quality-tested, and ready for same-day delivery across Lagos.</p>
-  </div>
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=800&auto=format&fit=crop" alt="1 Bag of Sachet Water">
-        <span class="product-badge">Popular</span>
-      </div>
-      <div class="product-content">
-        <h3>1 Bag of Water</h3>
-        <p class="product-sachets">20 sachets · 500ml each · 10 litres</p>
-        <p>Perfect for daily household use or small gatherings.</p>
-        <div class="price">?500 <span>/ bag</span></div>
-        <a href="order.html?product=1bag" class="order-btn">Order Now</a>
-          <button class="add-to-cart-btn" onclick="addToCart('1bag')">🛒 Add to Cart</button>
-      </div>
+  <!-- WHY US -->
+  <section>
+    <div class="section-title">
+      <div class="section-label">Why BANSEK</div>
+      <h2>Built Around Your Health</h2>
+      <p>Every decision we make starts with your safety and convenience.</p>
     </div>
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?q=80&w=800&auto=format&fit=crop" alt="5 Bags of Sachet Water">
-      </div>
-      <div class="product-content">
-        <h3>5 Bags of Water</h3>
-        <p class="product-sachets">100 sachets · 500ml each · 50 litres</p>
-        <p>Great for families, small offices, and weekly supply.</p>
-        <div class="price">?2,500 <span>/ 5 bags</span></div>
-        <a href="order.html?product=5bags" class="order-btn">Order Now</a>
-          <button class="add-to-cart-btn" onclick="addToCart('5bags')">🛒 Add to Cart</button>
-      </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">&#128167;</div><h3>100% Hygienic</h3><p>Modern purification and quality checks on every batch before it leaves our facility.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#128666;</div><h3>Fast Delivery</h3><p>Order before 12pm and get same-day delivery anywhere in Lagos.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#128172;</div><h3>WhatsApp Orders</h3><p>Order instantly via WhatsApp — no app download, no account needed.</p></div>
+      <div class="feature-card"><div class="feature-icon">&#9989;</div><h3>NAFDAC Certified</h3><p>Fully compliant with Nigerian food and drug safety standards.</p></div>
     </div>
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1564419320461-6870880221ad?q=80&w=800&auto=format&fit=crop" alt="10 Bags of Sachet Water">
-        <span class="product-badge">Best Value</span>
-      </div>
-      <div class="product-content">
-        <h3>10 Bags of Water</h3>
-        <p class="product-sachets">200 sachets · 500ml each · 100 litres</p>
-        <p>Ideal for offices, schools, events, and businesses.</p>
-        <div class="price">?5,000 <span>/ 10 bags</span></div>
-        <a href="order.html?product=10bags" class="order-btn">Order Now</a>
-          <button class="add-to-cart-btn" onclick="addToCart('10bags')">🛒 Add to Cart</button>
-      </div>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:48px;">
-    <a href="products.html" class="btn-primary">View All Products &amp; Pricing</a>
-  </div>
-</section>
+  </section>
 
-<!-- WHY US -->
-<section>
-  <div class="section-title">
-    <span class="section-eyebrow">Why BANSEK</span>
-    <h2>Built Around Your Health &amp; Convenience</h2>
-    <p>Every decision we make starts with your safety, your time, and your budget.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">??</div>
-      <h3>100% Hygienic</h3>
-      <p>Multi-stage purification and quality checks on every single batch before it leaves our facility.</p>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-title">
+      <div class="section-label" style="color:var(--teal);">Reviews</div>
+      <h2>What Customers Say</h2>
+      <p>Trusted by thousands of households and businesses across Lagos.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">??</div>
-      <h3>Same-Day Delivery</h3>
-      <p>Order before 12pm and receive your water the same day, anywhere in Lagos.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"BANSEK water is always fresh and delivered on time. My whole family drinks it every day."</p><div class="customer">— Amaka O., Lagos</div></div>
+      <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"We supply our entire office with BANSEK. The quality is consistent and the team is reliable."</p><div class="customer">— Chukwuemeka A., Abuja</div></div>
+      <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Ordered 20 bags for my daughter's birthday. Delivered same day — no stress at all!"</p><div class="customer">— Fatima B., Lagos</div></div>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">??</div>
-      <h3>WhatsApp Ordering</h3>
-      <p>Order instantly via WhatsApp — no app, no account, no hassle. Just message and we deliver.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">?</div>
-      <h3>NAFDAC Certified</h3>
-      <p>Fully certified and compliant with all Nigerian food and drug safety standards.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- HOW IT WORKS -->
-<section class="process-section">
-  <div class="section-title">
-    <span class="section-eyebrow" style="color:var(--teal)">How It Works</span>
-    <h2>Order in 3 Simple Steps</h2>
-    <p>Getting clean water delivered has never been easier.</p>
+  <!-- CTA -->
+  <div class="cta-band">
+    <h2>Ready to Order?</h2>
+    <p>Fill in our quick form and your order goes straight to us on WhatsApp.</p>
+    <a href="order.html" class="btn-dark">Place Your Order</a>
   </div>
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="process-num">??</div>
-      <h3>1. Fill the Form</h3>
-      <p>Enter your name, phone number, product choice, quantity, and delivery address on our order page.</p>
-    </div>
-    <div class="process-step">
-      <div class="process-num">??</div>
-      <h3>2. Send via WhatsApp</h3>
-      <p>Click the button and your order is sent directly to our WhatsApp — we receive it instantly.</p>
-    </div>
-    <div class="process-step">
-      <div class="process-num">??</div>
-      <h3>3. We Deliver</h3>
-      <p>We confirm your order and dispatch delivery. Same-day for orders before 12pm.</p>
-    </div>
-  </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="section-title">
-    <span class="section-eyebrow">Customer Reviews</span>
-    <h2>Trusted by Thousands</h2>
-    <p>Real customers, real experiences across Lagos.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="stars">?????</div>
-      <p>"BANSEK water is always fresh and delivered on time. My whole family drinks it every single day. Best water in Lagos!"</p>
-      <div class="customer-info">
-        <div class="customer-avatar">AO</div>
-        <div><div class="customer-name">Amaka Okafor</div><div class="customer-loc">Lekki, Lagos</div></div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>BANSEK</h3>
+        <p>Providing clean, safe, and affordable drinking water across Nigeria since 2015.</p>
+        <a href="https://wa.me/2348000000000" target="_blank" class="wa-footer-btn">Chat on WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="order.html">Order Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>&#128222; +234 800 000 0000</p>
+        <p>&#128231; bansekwater@gmail.com</p>
+        <p>&#128205; Lagos, Nigeria</p>
+        <p style="margin-top:8px;font-size:.82rem;color:rgba(255,255,255,.35);">Mon–Sat, 7am–7pm</p>
       </div>
     </div>
-    <div class="testimonial-card">
-      <div class="stars">?????</div>
-      <p>"We supply our entire office with BANSEK. The quality is consistently excellent and the team is always reliable."</p>
-      <div class="customer-info">
-        <div class="customer-avatar">CA</div>
-        <div><div class="customer-name">Chukwuemeka Ade</div><div class="customer-loc">Victoria Island, Lagos</div></div>
+    <div class="footer-bottom"><p>&copy; 2026 BANSEK Pure Water. All Rights Reserved.</p></div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2348000000000" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- CART DRAWER -->
+  <div id="cart-overlay" onclick="closeCart()"></div>
+  <div id="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-header-title">&#128722; Your Cart <span class="cart-header-count cart-badge" id="drawer-cart-badge">0</span></div>
+      <button class="cart-close-btn" onclick="closeCart()">&times;</button>
+    </div>
+    <div id="cart-empty" style="display:flex">
+      <div class="cart-empty-icon">&#128722;</div>
+      <p>Your cart is empty</p>
+      <span>Add products above — they will be saved here so you can order later</span>
+    </div>
+    <div id="cart-items"></div>
+    <div id="cart-footer" style="display:none">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-amount" id="cart-total">&#8358;0</span>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">?????</div>
-      <p>"Ordered 20 bags for my daughter's birthday party. Delivered same day, no stress at all. Will always use BANSEK!"</p>
-      <div class="customer-info">
-        <div class="customer-avatar">FB</div>
-        <div><div class="customer-name">Fatima Bello</div><div class="customer-loc">Ikeja, Lagos</div></div>
-      </div>
+      <button class="cart-checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+      <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
     </div>
   </div>
-</section>
+  <div id="cart-flash"></div>
 
-<!-- CTA -->
-<div class="cta-band">
-  <h2>Ready to Order Clean Water?</h2>
-  <p>Fill our quick form and your order goes straight to us on WhatsApp. Same-day delivery available.</p>
-  <div class="cta-band-btns">
-    <a href="order.html" class="btn-dark">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Place Your Order
-    </a>
-    <a href="products.html" class="btn-ghost" style="border-color:rgba(6,15,30,.3);color:var(--navy);">See All Products</a>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="logo-row"><div class="logo-mark">??</div><span class="logo-name">BANSEK</span></div>
-      <p>Providing clean, safe, and affordable sachet water across Lagos since 2015. NAFDAC certified. Same-day delivery available.</p>
-      <a href="https://wa.me/2348000000000" target="_blank" class="wa-footer-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Chat on WhatsApp
-      </a>
-    </div>
-    <div class="footer-col">
-      <h4>Pages</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="order.html">Order Now</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Products</h4>
-      <ul>
-        <li><a href="order.html?product=1bag">1 Bag — ?500</a></li>
-        <li><a href="order.html?product=5bags">5 Bags — ?2,500</a></li>
-        <li><a href="order.html?product=10bags">10 Bags — ?5,000</a></li>
-        <li><a href="order.html?product=20bags">20 Bags — ?9,500</a></li>
-        <li><a href="order.html?product=50bags">50 Bags — ?22,000</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>?? +234 800 000 0000</p>
-      <p>?? bansekwater@gmail.com</p>
-      <p>?? Lagos, Nigeria</p>
-      <p style="margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.25);">Mon–Sat · 7am–7pm</p>
-    </div>
-  </div>
-  <hr class="footer-divider"/>
-  <div class="footer-bottom">
-    <span>© 2026 BANSEK Pure Water. All Rights Reserved.</span>
-    <span>NAFDAC Certified · Lagos, Nigeria</span>
-  </div>
-</footer>
-
-<a href="https://wa.me/2348000000000" target="_blank" class="wa-float" aria-label="Order on WhatsApp">
-  <div class="wa-float-pulse"></div>
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-
-<!-- Cart Drawer -->
-<div id="cart-overlay" onclick="closeCart()"></div>
-<div id="cart-drawer">
-  <div class="cart-header">
-    <div class="cart-header-title">🛒 Your Cart <span class="cart-header-count cart-badge" id="drawer-cart-badge">0</span></div>
-    <button class="cart-close-btn" onclick="closeCart()">x</button>
-  </div>
-  <div id="cart-empty" style="display:flex">
-    <div class="cart-empty-icon">🛒</div>
-    <p>Your cart is empty</p>
-    <span>Add products above - they will be saved here so you can order later</span>
-  </div>
-  <div id="cart-items"></div>
-  <div id="cart-footer" style="display:none">
-    <div class="cart-total-row">
-      <span class="cart-total-label">Total</span>
-      <span class="cart-total-amount" id="cart-total">N0</span>
-    </div>
-    <button class="cart-checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
-    <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
-  </div>
-</div>
-<div id="cart-flash"></div>
-
+  <!-- SCRIPTS — nav.js has no imports so toggleMenu always works -->
   <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/nav.js"></script>
 </body>
 </html>
-
-
