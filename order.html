@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/notifications.css">
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 <nav id="navbar">
@@ -19,6 +20,11 @@
     <li><a href="products.html">Products</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="order.html" class="nav-cta">Order Now</a></li>
+    <li>
+      <button class="cart-nav-btn" onclick="openCart()" aria-label="View cart">
+        🛒 Cart <span class="cart-badge" id="nav-cart-badge">0</span>
+      </button>
+    </li>
     <li>
       <div class="notif-bell-wrap" style="position:relative">
         <button id="user-notif-bell" title="Notifications" aria-label="Notifications">🔔
@@ -42,6 +48,16 @@
   <div class="order-layout">
     <div>
       <form class="order-form-card" id="order-form" novalidate>
+        <!-- Cart summary (shown when coming from cart) -->
+        <div class="cart-summary-box" id="cart-summary-box" style="display:none">
+          <div class="cart-summary-title">🛒 Your Cart Summary</div>
+          <div id="cart-summary-items"></div>
+          <div class="cart-summary-total">
+            <span>Total</span>
+            <span id="cart-summary-total-amt"></span>
+          </div>
+        </div>
+
         <p class="form-section-title">Your Details</p>
         <div class="form-row">
           <div class="form-group">
@@ -188,7 +204,31 @@
   <div class="wa-float-pulse"></div>
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-<!-- Notification permission prompt (shown once if not yet asked) -->
+<!-- Cart Drawer -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-header-title">🛒 Your Cart <span class="cart-header-count cart-badge" id="drawer-cart-badge">0</span></div>
+    <button class="cart-close-btn" onclick="closeCart()">×</button>
+  </div>
+  <div id="cart-empty" style="display:flex">
+    <div class="cart-empty-icon">🛒</div>
+    <p>Your cart is empty</p>
+    <span>Add products from the Products page</span>
+  </div>
+  <div id="cart-items"></div>
+  <div id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cart-total">₦0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+    <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+<div id="cart-flash"></div>
+
+<!-- Notification permission prompt -->
 <div id="notif-permission-banner" style="display:none">
   <span style="font-size:1.2rem">🔔</span>
   <div class="npb-text">Get notified when your order status changes — enable notifications to stay updated.</div>
@@ -198,10 +238,53 @@
   </div>
 </div>
 
+<script src="js/cart.js"></script>
 <script src="js/notifications.js"></script>
 <script type="module" src="js/main.js"></script>
 <script>
-  // Show permission banner if not yet decided
+  // ── Pre-fill form from cart checkout ─────────────
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('from') !== 'cart') return;
+
+    const checkout = JSON.parse(localStorage.getItem('bansek_checkout') || 'null');
+    if (!checkout) return;
+
+    // Show cart summary box
+    const box = document.getElementById('cart-summary-box');
+    if (box) {
+      box.style.display = 'block';
+      const itemsEl = document.getElementById('cart-summary-items');
+      const totalEl = document.getElementById('cart-summary-total-amt');
+      if (itemsEl) {
+        itemsEl.innerHTML = checkout.items.map(i =>
+          `<div class="cart-summary-item"><span>${i.name} ×${i.qty}</span><strong>₦${(i.price * i.qty).toLocaleString('en-NG')}</strong></div>`
+        ).join('');
+      }
+      if (totalEl) totalEl.textContent = '₦' + checkout.total.toLocaleString('en-NG');
+    }
+
+    // Pre-fill product select
+    const select = document.getElementById('product-select');
+    if (select && checkout.items.length === 1) {
+      Array.from(select.options).forEach(opt => {
+        if (opt.value === checkout.items[0].label) opt.selected = true;
+      });
+    } else if (select) {
+      // Multiple items — add a combined option
+      const opt = document.createElement('option');
+      opt.value = checkout.productLabel;
+      opt.textContent = 'Multiple items (see cart summary above)';
+      opt.selected = true;
+      select.appendChild(opt);
+    }
+
+    // Pre-fill quantity
+    const qtyEl = document.getElementById('quantity');
+    if (qtyEl) qtyEl.value = checkout.totalQty;
+  });
+
+  // ── Notification permission banner ────────────────
   window.addEventListener('DOMContentLoaded', () => {
     if (!window.BansekNotif) return;
     const prefs = window.BansekNotif.loadPrefs();

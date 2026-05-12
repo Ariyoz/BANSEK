@@ -274,6 +274,19 @@
   </div>
 </div>
 
+<!-- RECEIPT MODAL -->
+<div id="receipt-overlay" onclick="closeReceipt(event)">
+  <div id="receipt-modal">
+    <div id="receipt-print-area">
+      <div id="receipt-content"></div>
+    </div>
+    <div class="receipt-actions">
+      <button class="receipt-print-btn" onclick="doPrint()">🖨 Print Receipt</button>
+      <button class="receipt-close-btn" onclick="closeReceipt()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -395,6 +408,7 @@ function buildRow(order) {
     </td>
     <td style="display:flex;gap:6px;flex-wrap:wrap">
       <button class="action-btn view" onclick="viewOrder('${order.id}')">View</button>
+      <button class="action-btn print" onclick="printReceipt('${order.id}')">🖨 Print</button>
       <button class="action-btn delete" onclick="deleteOrder('${order.id}')">Delete</button>
     </td>
   </tr>`;
@@ -522,6 +536,9 @@ function viewOrder(id) {
         <option value="Delivered" ${order.status==='Delivered' ? 'selected':''}>🚚 Delivered</option>
         <option value="Cancelled" ${order.status==='Cancelled' ? 'selected':''}>❌ Cancelled</option>
       </select>
+    </div>
+    <div style="margin-top:16px">
+      <button class="action-btn print" style="width:100%;padding:12px;font-size:.88rem" onclick="closeModal();printReceipt('${order.id}')">🖨 Print Receipt</button>
     </div>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
@@ -597,6 +614,123 @@ function logout() {
   window.location.href = 'index.html';
 }
 window.logout = logout;
+
+// ════════════════════════════════════════════════
+//  PRINT RECEIPT
+// ════════════════════════════════════════════════
+
+function printReceipt(id) {
+  const order = allOrders.find(o => o.id === id);
+  if (!order) return;
+
+  // Calculate price from product label
+  const priceMap = {
+    '1 Bag':  500,
+    '5 Bags': 2500,
+    '10 Bags': 5000,
+    '20 Bags': 9500,
+    '50 Bags': 22000
+  };
+  let unitPrice = 0;
+  for (const [key, val] of Object.entries(priceMap)) {
+    if ((order.product || '').startsWith(key)) { unitPrice = val; break; }
+  }
+  const total = unitPrice > 0
+    ? '₦' + (unitPrice * parseInt(order.quantity || 1)).toLocaleString('en-NG')
+    : 'See WhatsApp';
+
+  const statusBadge = `<span class="receipt-status-badge ${order.status}">${order.status}</span>`;
+
+  document.getElementById('receipt-content').innerHTML = `
+    <div class="receipt-logo">
+      <span class="receipt-logo-icon">💧</span>
+      <h2>BANSEK</h2>
+      <p>Pure Water · Lagos, Nigeria</p>
+      <p>📞 +234 800 000 0000</p>
+    </div>
+    <div class="receipt-title">Order Receipt</div>
+
+    <div class="receipt-row">
+      <span class="receipt-label">Order ID</span>
+      <span class="receipt-value">#${escHtml(order.id)}</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Date</span>
+      <span class="receipt-value">${escHtml(order.datetime)}</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Status</span>
+      <span class="receipt-value">${statusBadge}</span>
+    </div>
+
+    <hr class="receipt-divider"/>
+
+    <div class="receipt-row">
+      <span class="receipt-label">Customer</span>
+      <span class="receipt-value">${escHtml(order.name)}</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Phone</span>
+      <span class="receipt-value">${escHtml(order.phone)}</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Address</span>
+      <span class="receipt-value" style="max-width:220px">${escHtml(order.address)}</span>
+    </div>
+    ${order.deliveryDate ? `
+    <div class="receipt-row">
+      <span class="receipt-label">Delivery Date</span>
+      <span class="receipt-value">${escHtml(order.deliveryDate)}</span>
+    </div>` : ''}
+
+    <hr class="receipt-divider"/>
+
+    <div class="receipt-row">
+      <span class="receipt-label">Product</span>
+      <span class="receipt-value" style="max-width:220px">${escHtml(order.product)}</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Quantity</span>
+      <span class="receipt-value">${escHtml(order.quantity)} bag(s)</span>
+    </div>
+    <div class="receipt-row">
+      <span class="receipt-label">Payment</span>
+      <span class="receipt-value">${escHtml(order.payment)}</span>
+    </div>
+    ${order.notes ? `
+    <div class="receipt-row">
+      <span class="receipt-label">Notes</span>
+      <span class="receipt-value" style="max-width:220px">${escHtml(order.notes)}</span>
+    </div>` : ''}
+
+    <hr class="receipt-divider"/>
+
+    <div class="receipt-total-row">
+      <span class="receipt-total-label">Total Amount</span>
+      <span class="receipt-total-value">${total}</span>
+    </div>
+
+    <div class="receipt-footer">
+      Thank you for choosing BANSEK Pure Water!<br>
+      NAFDAC Certified · Quality Guaranteed<br>
+      <strong>bansekwater.netlify.app</strong>
+    </div>`;
+
+  document.getElementById('receipt-overlay').classList.add('open');
+}
+window.printReceipt = printReceipt;
+
+function closeReceipt(e) {
+  if (!e || e.target === document.getElementById('receipt-overlay')) {
+    document.getElementById('receipt-overlay').classList.remove('open');
+  }
+}
+window.closeReceipt = closeReceipt;
+
+function doPrint() {
+  window.print();
+}
+window.doPrint = doPrint;
 
 // ════════════════════════════════════════════════
 //  ADMIN NOTIFICATION SYSTEM
